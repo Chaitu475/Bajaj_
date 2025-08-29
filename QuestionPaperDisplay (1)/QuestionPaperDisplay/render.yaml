@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: vit-fullstack-api
+    env: node
+    plan: free
+    buildCommand: npm install && node build.js
+    startCommand: node dist/start.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        fromService:
+          type: web
+          name: vit-fullstack-api
+          property: port
